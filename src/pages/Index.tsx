@@ -1,4 +1,5 @@
 import { Hero } from "@/components/Hero";
+import { ProjectPortfolio } from "@/components/ProjectPortfolio";
 import { MinistryRegistry } from "@/components/MinistryRegistry";
 import { SystemHealth } from "@/components/SystemHealth";
 import { MinistryControl } from "@/components/MinistryControl";
@@ -12,12 +13,15 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <Hero />
+      <ProjectPortfolio />
       <SystemHealth />
-      <MinistryRegistry />
       <MinistryControl />
       <Globe3D />
-      <AITeamRegistry />
+      <div id="ai-league">
+        <AITeamRegistry />
+      </div>
       <HubsNetwork />
+      <MinistryRegistry />
       <Mission />
       <Footer />
     </div>

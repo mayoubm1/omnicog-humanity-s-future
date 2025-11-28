@@ -48,11 +48,20 @@ export const Hero = () => {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-6 text-lg glow-primary transition-all hover:scale-105">
+          <Button 
+            size="lg" 
+            className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-6 text-lg glow-primary transition-all hover:scale-105"
+            onClick={() => document.getElementById('project-portfolio')?.scrollIntoView({ behavior: 'smooth' })}
+          >
             Explore the Vision
             <ArrowRight className="ml-2 w-5 h-5" />
           </Button>
-          <Button size="lg" variant="outline" className="border-primary/50 text-foreground hover:bg-primary/10 px-8 py-6 text-lg transition-all hover:scale-105">
+          <Button 
+            size="lg" 
+            variant="outline" 
+            className="border-primary/50 text-foreground hover:bg-primary/10 px-8 py-6 text-lg transition-all hover:scale-105"
+            onClick={() => document.getElementById('ai-league')?.scrollIntoView({ behavior: 'smooth' })}
+          >
             Meet the AI League
           </Button>
         </div>

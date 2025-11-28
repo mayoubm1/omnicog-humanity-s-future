@@ -26,8 +26,21 @@ const values = [
 
 export const Mission = () => {
   return (
-    <section className="py-24 px-6 bg-card/30">
-      <div className="container mx-auto">
+    <section className="py-24 px-6 relative overflow-hidden">
+      {/* Video background */}
+      <div className="absolute inset-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-20"
+        >
+          <source src="/videos/network-flow.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-background/80" />
+      </div>
+      <div className="container mx-auto relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-5xl md:text-6xl font-bold mb-6">
             A Project for <span className="text-gradient-accent">Humanity</span>
