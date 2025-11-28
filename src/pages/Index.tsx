@@ -7,6 +7,7 @@ import { Globe3D } from "@/components/Globe3D";
 import { AITeamRegistry } from "@/components/AITeamRegistry";
 import { HubsNetwork } from "@/components/HubsNetwork";
 import { Mission } from "@/components/Mission";
+import { VisionBook } from "@/components/VisionBook";
 import { Footer } from "@/components/Footer";
 
 const Index = () => {
@@ -21,6 +22,7 @@ const Index = () => {
         <AITeamRegistry />
       </div>
       <HubsNetwork />
+      <VisionBook />
       <MinistryRegistry />
       <Mission />
       <Footer />
