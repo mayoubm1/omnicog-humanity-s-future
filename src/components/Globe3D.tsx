@@ -19,9 +19,20 @@ const globalHubs = [
 export const Globe3D = () => {
 
   return (
-    <section className="py-20 px-6 bg-background relative overflow-hidden">
-      {/* Cosmic background effect */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background" />
+    <section className="py-20 px-6 relative overflow-hidden">
+      {/* Video background */}
+      <div className="absolute inset-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-15"
+        >
+          <source src="/videos/genomics-flow.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-background/85" />
+      </div>
       
       <div className="max-w-7xl mx-auto relative z-10">
         <motion.div

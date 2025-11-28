@@ -104,8 +104,22 @@ const aiTeam = [
 
 export const AITeamRegistry = () => {
   return (
-    <section className="py-20 px-6 bg-muted/30">
-      <div className="max-w-7xl mx-auto">
+    <section className="py-20 px-6 relative overflow-hidden">
+      {/* Video background */}
+      <div className="absolute inset-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover opacity-15"
+        >
+          <source src="/videos/tech-showcase-2.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-background/85" />
+      </div>
+      
+      <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
