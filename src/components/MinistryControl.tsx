@@ -21,35 +21,59 @@ interface Ministry {
 const ministries: Ministry[] = [
   {
     id: "globe",
-    name: "Global 3D Network",
+    name: "Global 3D Network Hub",
     status: "active",
-    description: "50+ research institutes connected",
-    url: "https://waaecfjc.manus.space/",
+    description: "Live 3D visualization of global research institutes",
+    url: "https://tawasol-globe-app.vercel.app/",
     metrics: { users: "1.2K", requests: "45K/day", uptime: "99.9%" }
   },
   {
-    id: "m23m",
-    name: "M2-3M Research Engine",
+    id: "education",
+    name: "Education Portal",
     status: "active",
-    description: "4.2TB/hour quantum processor",
-    url: "https://qjh9iec5vx5p.manus.space/",
-    metrics: { users: "850", requests: "120K/day", uptime: "99.8%" }
+    description: "Learning management & course delivery",
+    url: "https://webapp-amber-eta.vercel.app/login",
+    metrics: { users: "2.8K", requests: "65K/day", uptime: "99.8%" }
   },
   {
-    id: "telemedicine",
-    name: "Telemedicine Hub",
+    id: "healthtech",
+    name: "Health Tech Ecosystem",
     status: "active",
-    description: "MyWell AI & MyAssist AI",
-    url: "https://dyh6i3c9o0ll.manus.space/",
+    description: "Digital healthcare & telemedicine platform",
+    url: "https://health-tech-ecosystem-frontend-3z3u-cw69gw4fd-tawasolnow.vercel.app/",
     metrics: { users: "3.5K", requests: "85K/day", uptime: "99.9%" }
   },
   {
-    id: "radio",
-    name: "Radio & Podcasts",
+    id: "registry",
+    name: "Digital TELSTP Registry",
     status: "active",
-    description: "24/7 broadcasting",
-    url: "https://yhyatksk.manus.space/",
-    metrics: { users: "2.1K", requests: "65K/day", uptime: "99.7%" }
+    description: "Unified platform registry & management",
+    url: "https://digital-telstp-unified-registry-fem.vercel.app/",
+    metrics: { users: "1.5K", requests: "42K/day", uptime: "99.7%" }
+  },
+  {
+    id: "showcase",
+    name: "TELSTP Showcase",
+    status: "active",
+    description: "Public-facing showcase website",
+    url: "https://telstp-showcase-website-hnjgci9w8-tawasolnow.vercel.app/",
+    metrics: { users: "5.2K", requests: "95K/day", uptime: "99.9%" }
+  },
+  {
+    id: "genomics",
+    name: "Egypt Omics Hub",
+    status: "active",
+    description: "Genomics & precision medicine platform",
+    url: "https://egypt-omics-uber.vercel.app/",
+    metrics: { users: "890", requests: "38K/day", uptime: "99.6%" }
+  },
+  {
+    id: "sciences",
+    name: "Future Sciences Hub",
+    status: "active",
+    description: "First TELSTP platform - foundational hub",
+    url: "https://egypt-future-sciences-hub.vercel.app/",
+    metrics: { users: "2.1K", requests: "52K/day", uptime: "99.8%" }
   }
 ];
 
