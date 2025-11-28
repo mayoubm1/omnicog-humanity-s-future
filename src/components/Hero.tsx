@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles, LogIn } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export const Hero = () => {
   return (
@@ -20,6 +21,20 @@ export const Hero = () => {
 
       {/* Grid overlay */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(187,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(187,255,255,0.03)_1px,transparent_1px)] bg-[size:50px_50px]" />
+
+      {/* Auth Button */}
+      <div className="absolute top-8 right-8 z-20">
+        <Button
+          asChild
+          variant="outline"
+          className="backdrop-blur-sm bg-background/10 border-primary/20 hover:bg-background/20"
+        >
+          <Link to="/auth">
+            <LogIn className="mr-2 h-4 w-4" />
+            Sign In
+          </Link>
+        </Button>
+      </div>
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-6 text-center">
