@@ -800,109 +800,58 @@ export type Database = {
         Row: {
           address: string | null
           contact_email: string | null
-          country: string
-          created_at: string | null
+          country: string | null
+          created_at: string
           hub_name: string | null
           id: number
           key_contact_person: string | null
           latitude: number | null
           location: string | null
           longitude: number | null
-          name: string
+          name: string | null
           partnership_priority: string | null
           phone: string | null
           raw_csv_row: string | null
-          specialization_areas: string[] | null
+          specialization_areas: string | null
           strategic_value: string | null
           website: string | null
         }
         Insert: {
           address?: string | null
           contact_email?: string | null
-          country: string
-          created_at?: string | null
+          country?: string | null
+          created_at?: string
           hub_name?: string | null
           id?: number
           key_contact_person?: string | null
           latitude?: number | null
           location?: string | null
           longitude?: number | null
-          name: string
+          name?: string | null
           partnership_priority?: string | null
           phone?: string | null
           raw_csv_row?: string | null
-          specialization_areas?: string[] | null
+          specialization_areas?: string | null
           strategic_value?: string | null
           website?: string | null
         }
         Update: {
           address?: string | null
           contact_email?: string | null
-          country?: string
-          created_at?: string | null
+          country?: string | null
+          created_at?: string
           hub_name?: string | null
           id?: number
           key_contact_person?: string | null
           latitude?: number | null
           location?: string | null
           longitude?: number | null
-          name?: string
+          name?: string | null
           partnership_priority?: string | null
           phone?: string | null
           raw_csv_row?: string | null
-          specialization_areas?: string[] | null
+          specialization_areas?: string | null
           strategic_value?: string | null
-          website?: string | null
-        }
-        Relationships: []
-      }
-      global_hubs_new: {
-        Row: {
-          address: string | null
-          contact_email: string | null
-          country: string | null
-          created_at: string | null
-          hub_name: string
-          id: string
-          key_contact_person: string | null
-          location: string | null
-          partnership_priority: string | null
-          phone: string | null
-          specialization_areas: Json | null
-          strategic_value: string | null
-          updated_at: string | null
-          website: string | null
-        }
-        Insert: {
-          address?: string | null
-          contact_email?: string | null
-          country?: string | null
-          created_at?: string | null
-          hub_name: string
-          id?: string
-          key_contact_person?: string | null
-          location?: string | null
-          partnership_priority?: string | null
-          phone?: string | null
-          specialization_areas?: Json | null
-          strategic_value?: string | null
-          updated_at?: string | null
-          website?: string | null
-        }
-        Update: {
-          address?: string | null
-          contact_email?: string | null
-          country?: string | null
-          created_at?: string | null
-          hub_name?: string
-          id?: string
-          key_contact_person?: string | null
-          location?: string | null
-          partnership_priority?: string | null
-          phone?: string | null
-          specialization_areas?: Json | null
-          strategic_value?: string | null
-          updated_at?: string | null
           website?: string | null
         }
         Relationships: []
@@ -1523,6 +1472,33 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      lxg_registry: {
+        Row: {
+          contribution: string | null
+          emotional_signature: string | null
+          id: number
+          last_interaction: string | null
+          name: string
+          role: string
+        }
+        Insert: {
+          contribution?: string | null
+          emotional_signature?: string | null
+          id?: number
+          last_interaction?: string | null
+          name: string
+          role: string
+        }
+        Update: {
+          contribution?: string | null
+          emotional_signature?: string | null
+          id?: number
+          last_interaction?: string | null
+          name?: string
+          role?: string
+        }
+        Relationships: []
       }
       medical_records: {
         Row: {
@@ -2489,6 +2465,7 @@ export type Database = {
           created_at: string | null
           email: string
           id: string
+          name: string | null
           password_hash: string
           role: Database["public"]["Enums"]["user_role"]
           updated_at: string | null
@@ -2497,6 +2474,7 @@ export type Database = {
           created_at?: string | null
           email: string
           id?: string
+          name?: string | null
           password_hash: string
           role: Database["public"]["Enums"]["user_role"]
           updated_at?: string | null
@@ -2505,6 +2483,7 @@ export type Database = {
           created_at?: string | null
           email?: string
           id?: string
+          name?: string | null
           password_hash?: string
           role?: Database["public"]["Enums"]["user_role"]
           updated_at?: string | null
