@@ -14,6 +14,41 @@ export type Database = {
   }
   public: {
     Tables: {
+      agent_credentials: {
+        Row: {
+          agent_id: string
+          created_at: string | null
+          credential_data: Json
+          id: string
+          owner_user_id: string
+          updated_at: string | null
+        }
+        Insert: {
+          agent_id: string
+          created_at?: string | null
+          credential_data?: Json
+          id?: string
+          owner_user_id: string
+          updated_at?: string | null
+        }
+        Update: {
+          agent_id?: string
+          created_at?: string | null
+          credential_data?: Json
+          id?: string
+          owner_user_id?: string
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "agent_credentials_agent_id_fkey"
+            columns: ["agent_id"]
+            isOneToOne: false
+            referencedRelation: "ai_agents"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       agents_projects: {
         Row: {
           agent_id: string
@@ -98,13 +133,6 @@ export type Database = {
             referencedRelation: "ai_models"
             referencedColumns: ["id"]
           },
-          {
-            foreignKeyName: "ai_agents_owner_user_id_fkey"
-            columns: ["owner_user_id"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          },
         ]
       }
       ai_agents_backup: {
@@ -173,13 +201,6 @@ export type Database = {
             referencedRelation: "ai_agents"
             referencedColumns: ["id"]
           },
-          {
-            foreignKeyName: "ai_interactions_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          },
         ]
       }
       ai_messages: {
@@ -207,15 +228,7 @@ export type Database = {
           sender?: string
           user_id?: string
         }
-        Relationships: [
-          {
-            foreignKeyName: "ai_messages_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       ai_models: {
         Row: {
@@ -278,15 +291,7 @@ export type Database = {
           owner_user_id?: string
           service_name?: string | null
         }
-        Relationships: [
-          {
-            foreignKeyName: "api_keys_owner_user_id_fkey"
-            columns: ["owner_user_id"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       appointments: {
         Row: {
@@ -434,13 +439,6 @@ export type Database = {
             referencedRelation: "research_projects"
             referencedColumns: ["id"]
           },
-          {
-            foreignKeyName: "collaborations_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          },
         ]
       }
       conceptual_framework: {
@@ -509,13 +507,6 @@ export type Database = {
             referencedRelation: "platform"
             referencedColumns: ["id"]
           },
-          {
-            foreignKeyName: "conversation_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "user"
-            referencedColumns: ["id"]
-          },
         ]
       }
       courses: {
@@ -561,15 +552,7 @@ export type Database = {
           title?: string
           updated_at?: string
         }
-        Relationships: [
-          {
-            foreignKeyName: "courses_instructor_id_fkey"
-            columns: ["instructor_id"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       datasets: {
         Row: {
@@ -622,13 +605,6 @@ export type Database = {
             referencedRelation: "research_projects"
             referencedColumns: ["id"]
           },
-          {
-            foreignKeyName: "datasets_uploaded_by_fkey"
-            columns: ["uploaded_by"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          },
         ]
       }
       enrollments: {
@@ -662,13 +638,6 @@ export type Database = {
             columns: ["course_id"]
             isOneToOne: false
             referencedRelation: "courses"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "enrollments_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "users"
             referencedColumns: ["id"]
           },
         ]
@@ -892,51 +861,6 @@ export type Database = {
         }
         Relationships: []
       }
-      global_profiles: {
-        Row: {
-          address: string | null
-          created_at: string | null
-          date_of_birth: string | null
-          first_name: string | null
-          gender: string | null
-          id: string
-          last_name: string | null
-          metadata: Json | null
-          phone_number: string | null
-          profile_picture_url: string | null
-          updated_at: string | null
-          user_id: string
-        }
-        Insert: {
-          address?: string | null
-          created_at?: string | null
-          date_of_birth?: string | null
-          first_name?: string | null
-          gender?: string | null
-          id: string
-          last_name?: string | null
-          metadata?: Json | null
-          phone_number?: string | null
-          profile_picture_url?: string | null
-          updated_at?: string | null
-          user_id: string
-        }
-        Update: {
-          address?: string | null
-          created_at?: string | null
-          date_of_birth?: string | null
-          first_name?: string | null
-          gender?: string | null
-          id?: string
-          last_name?: string | null
-          metadata?: Json | null
-          phone_number?: string | null
-          profile_picture_url?: string | null
-          updated_at?: string | null
-          user_id?: string
-        }
-        Relationships: []
-      }
       global_projects: {
         Row: {
           created_at: string | null
@@ -1030,13 +954,6 @@ export type Database = {
             referencedRelation: "research_projects"
             referencedColumns: ["id"]
           },
-          {
-            foreignKeyName: "fk_hcpark_collaborations_user"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          },
         ]
       }
       hcpark_datasets: {
@@ -1088,13 +1005,6 @@ export type Database = {
             columns: ["project_id"]
             isOneToOne: false
             referencedRelation: "research_projects"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "fk_hcpark_datasets_uploaded_by"
-            columns: ["uploaded_by"]
-            isOneToOne: false
-            referencedRelation: "users"
             referencedColumns: ["id"]
           },
         ]
@@ -1296,15 +1206,7 @@ export type Database = {
           specialization?: string | null
           updated_at?: string | null
         }
-        Relationships: [
-          {
-            foreignKeyName: "healthcare_providers_id_fkey"
-            columns: ["id"]
-            isOneToOne: true
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       knowledge_entry: {
         Row: {
@@ -1378,13 +1280,6 @@ export type Database = {
             referencedRelation: "virtual_labs"
             referencedColumns: ["id"]
           },
-          {
-            foreignKeyName: "lab_sessions_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          },
         ]
       }
       lesson_progress: {
@@ -1415,13 +1310,6 @@ export type Database = {
             columns: ["lesson_id"]
             isOneToOne: false
             referencedRelation: "lessons"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "lesson_progress_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "users"
             referencedColumns: ["id"]
           },
         ]
@@ -1476,29 +1364,43 @@ export type Database = {
       lxg_registry: {
         Row: {
           contribution: string | null
+          credential_id: string | null
           emotional_signature: string | null
           id: number
+          is_public: boolean | null
           last_interaction: string | null
           name: string
           role: string
         }
         Insert: {
           contribution?: string | null
+          credential_id?: string | null
           emotional_signature?: string | null
           id?: number
+          is_public?: boolean | null
           last_interaction?: string | null
           name: string
           role: string
         }
         Update: {
           contribution?: string | null
+          credential_id?: string | null
           emotional_signature?: string | null
           id?: number
+          is_public?: boolean | null
           last_interaction?: string | null
           name?: string
           role?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "lxg_registry_credential_fkey"
+            columns: ["credential_id"]
+            isOneToOne: false
+            referencedRelation: "agent_credentials"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       medical_records: {
         Row: {
@@ -1631,20 +1533,6 @@ export type Database = {
             referencedRelation: "teleconsultations"
             referencedColumns: ["id"]
           },
-          {
-            foreignKeyName: "messages_receiver_id_fkey"
-            columns: ["receiver_id"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "messages_sender_id_fkey"
-            columns: ["sender_id"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          },
         ]
       }
       modules: {
@@ -1701,15 +1589,7 @@ export type Database = {
           medical_id?: string | null
           user_id?: number
         }
-        Relationships: [
-          {
-            foreignKeyName: "patient_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "user"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       patients: {
         Row: {
@@ -1748,13 +1628,6 @@ export type Database = {
             columns: ["primary_care_provider_id"]
             isOneToOne: false
             referencedRelation: "healthcare_providers"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "patients_id_fkey"
-            columns: ["id"]
-            isOneToOne: true
-            referencedRelation: "users"
             referencedColumns: ["id"]
           },
         ]
@@ -1832,56 +1705,27 @@ export type Database = {
       }
       profiles: {
         Row: {
-          address: string | null
+          avatar_url: string | null
           created_at: string | null
-          date_of_birth: string | null
-          first_name: string | null
-          gender: Database["public"]["Enums"]["gender_type"] | null
+          full_name: string | null
           id: string
-          last_name: string | null
-          metadata: Json | null
-          phone_number: string | null
-          profile_picture_url: string | null
-          updated_at: string | null
-          user_id: string
+          username: string | null
         }
         Insert: {
-          address?: string | null
+          avatar_url?: string | null
           created_at?: string | null
-          date_of_birth?: string | null
-          first_name?: string | null
-          gender?: Database["public"]["Enums"]["gender_type"] | null
-          id?: string
-          last_name?: string | null
-          metadata?: Json | null
-          phone_number?: string | null
-          profile_picture_url?: string | null
-          updated_at?: string | null
-          user_id: string
+          full_name?: string | null
+          id: string
+          username?: string | null
         }
         Update: {
-          address?: string | null
+          avatar_url?: string | null
           created_at?: string | null
-          date_of_birth?: string | null
-          first_name?: string | null
-          gender?: Database["public"]["Enums"]["gender_type"] | null
+          full_name?: string | null
           id?: string
-          last_name?: string | null
-          metadata?: Json | null
-          phone_number?: string | null
-          profile_picture_url?: string | null
-          updated_at?: string | null
-          user_id?: string
+          username?: string | null
         }
-        Relationships: [
-          {
-            foreignKeyName: "profiles_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: true
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       projects: {
         Row: {
@@ -1914,22 +1758,7 @@ export type Database = {
           status?: string | null
           user_id?: string | null
         }
-        Relationships: [
-          {
-            foreignKeyName: "projects_owner_user_id_fkey"
-            columns: ["owner_user_id"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "projects_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       publications: {
         Row: {
@@ -2098,15 +1927,7 @@ export type Database = {
           status?: Database["public"]["Enums"]["research_project_status"] | null
           updated_at?: string | null
         }
-        Relationships: [
-          {
-            foreignKeyName: "research_projects_lead_researcher_id_fkey"
-            columns: ["lead_researcher_id"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       staging_global_hubs: {
         Row: {
@@ -2270,13 +2091,6 @@ export type Database = {
             referencedRelation: "assignments"
             referencedColumns: ["id"]
           },
-          {
-            foreignKeyName: "submissions_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          },
         ]
       }
       teleconsultations: {
@@ -2371,30 +2185,6 @@ export type Database = {
           },
         ]
       }
-      user: {
-        Row: {
-          created_at: string | null
-          email: string
-          id: number
-          role: string | null
-          username: string
-        }
-        Insert: {
-          created_at?: string | null
-          email: string
-          id?: number
-          role?: string | null
-          username: string
-        }
-        Update: {
-          created_at?: string | null
-          email?: string
-          id?: number
-          role?: string | null
-          username?: string
-        }
-        Relationships: []
-      }
       user_projects: {
         Row: {
           category: string | null
@@ -2429,15 +2219,7 @@ export type Database = {
           updated_at?: string | null
           user_id?: string
         }
-        Relationships: [
-          {
-            foreignKeyName: "user_projects_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       user_roles: {
         Row: {
@@ -2457,36 +2239,6 @@ export type Database = {
           id?: string
           role?: string
           user_id?: string
-        }
-        Relationships: []
-      }
-      users: {
-        Row: {
-          created_at: string | null
-          email: string
-          id: string
-          name: string | null
-          password_hash: string
-          role: Database["public"]["Enums"]["user_role"]
-          updated_at: string | null
-        }
-        Insert: {
-          created_at?: string | null
-          email: string
-          id?: string
-          name?: string | null
-          password_hash: string
-          role: Database["public"]["Enums"]["user_role"]
-          updated_at?: string | null
-        }
-        Update: {
-          created_at?: string | null
-          email?: string
-          id?: string
-          name?: string | null
-          password_hash?: string
-          role?: Database["public"]["Enums"]["user_role"]
-          updated_at?: string | null
         }
         Relationships: []
       }
@@ -2539,6 +2291,28 @@ export type Database = {
       calculate_course_progress: {
         Args: { p_course_id: string; p_user_id: string }
         Returns: number
+      }
+      get_all_tables: {
+        Args: never
+        Returns: {
+          created_at: string
+          has_rls: boolean
+          row_count: number
+          table_name: string
+          total_size: string
+        }[]
+      }
+      get_table_schema: {
+        Args: { table_name: string }
+        Returns: {
+          column_default: string
+          column_name: string
+          data_type: string
+          foreign_table: string
+          is_foreign_key: boolean
+          is_nullable: string
+          is_primary_key: boolean
+        }[]
       }
       is_project_member: { Args: { p_project_id: string }; Returns: boolean }
     }
