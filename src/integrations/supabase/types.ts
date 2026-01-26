@@ -511,48 +511,21 @@ export type Database = {
       }
       conversations: {
         Row: {
-          created_at: string | null
-          id: string
-          is_shared: boolean | null
-          title: string | null
-          updated_at: string | null
-          user_id: string | null
-          workspace_id: string | null
+          created_at: string
+          id: number
+          title: string
         }
         Insert: {
-          created_at?: string | null
-          id?: string
-          is_shared?: boolean | null
-          title?: string | null
-          updated_at?: string | null
-          user_id?: string | null
-          workspace_id?: string | null
+          created_at?: string
+          id?: number
+          title: string
         }
         Update: {
-          created_at?: string | null
-          id?: string
-          is_shared?: boolean | null
-          title?: string | null
-          updated_at?: string | null
-          user_id?: string | null
-          workspace_id?: string | null
+          created_at?: string
+          id?: number
+          title?: string
         }
-        Relationships: [
-          {
-            foreignKeyName: "conversations_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "conversations_workspace_id_fkey"
-            columns: ["workspace_id"]
-            isOneToOne: false
-            referencedRelation: "workspaces"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       courses: {
         Row: {
@@ -596,6 +569,33 @@ export type Database = {
           thumbnail_url?: string | null
           title?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+      daily_broadcasts: {
+        Row: {
+          audio_url: string
+          created_at: string | null
+          id: number
+          order: number
+          title: string
+          type: string
+        }
+        Insert: {
+          audio_url: string
+          created_at?: string | null
+          id?: number
+          order: number
+          title: string
+          type: string
+        }
+        Update: {
+          audio_url?: string
+          created_at?: string | null
+          id?: number
+          order?: number
+          title?: string
+          type?: string
         }
         Relationships: []
       }
@@ -686,6 +686,72 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      episode_ideas: {
+        Row: {
+          created_at: string | null
+          description: string
+          id: number
+          status: string
+          suggested_by: string
+          title: string
+        }
+        Insert: {
+          created_at?: string | null
+          description: string
+          id?: number
+          status?: string
+          suggested_by: string
+          title: string
+        }
+        Update: {
+          created_at?: string | null
+          description?: string
+          id?: number
+          status?: string
+          suggested_by?: string
+          title?: string
+        }
+        Relationships: []
+      }
+      episodes: {
+        Row: {
+          ambience_goals: string | null
+          audio_url: string | null
+          created_at: string | null
+          duration: number | null
+          emotional_arc: string | null
+          id: number
+          sfx_requirements: string | null
+          status: string
+          theme: string
+          title: string
+        }
+        Insert: {
+          ambience_goals?: string | null
+          audio_url?: string | null
+          created_at?: string | null
+          duration?: number | null
+          emotional_arc?: string | null
+          id?: number
+          sfx_requirements?: string | null
+          status?: string
+          theme: string
+          title: string
+        }
+        Update: {
+          ambience_goals?: string | null
+          audio_url?: string | null
+          created_at?: string | null
+          duration?: number | null
+          emotional_arc?: string | null
+          id?: number
+          sfx_requirements?: string | null
+          status?: string
+          theme?: string
+          title?: string
+        }
+        Relationships: []
       }
       error_log: {
         Row: {
@@ -1596,44 +1662,38 @@ export type Database = {
       }
       messages: {
         Row: {
-          author_id: string | null
-          consultation_id: string | null
-          conversation_id: string | null
-          id: string
-          message_text: string
-          read_at: string | null
-          receiver_id: string | null
-          sender_id: string
-          sent_at: string | null
+          content: string
+          conversation_id: number
+          created_at: string
+          id: number
+          role: string
+          user_id: string | null
+          workspace_id: string | null
         }
         Insert: {
-          author_id?: string | null
-          consultation_id?: string | null
-          conversation_id?: string | null
-          id?: string
-          message_text: string
-          read_at?: string | null
-          receiver_id?: string | null
-          sender_id: string
-          sent_at?: string | null
+          content: string
+          conversation_id: number
+          created_at?: string
+          id?: number
+          role: string
+          user_id?: string | null
+          workspace_id?: string | null
         }
         Update: {
-          author_id?: string | null
-          consultation_id?: string | null
-          conversation_id?: string | null
-          id?: string
-          message_text?: string
-          read_at?: string | null
-          receiver_id?: string | null
-          sender_id?: string
-          sent_at?: string | null
+          content?: string
+          conversation_id?: number
+          created_at?: string
+          id?: number
+          role?: string
+          user_id?: string | null
+          workspace_id?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: "messages_consultation_id_fkey"
-            columns: ["consultation_id"]
+            foreignKeyName: "messages_conversation_id_fkey"
+            columns: ["conversation_id"]
             isOneToOne: false
-            referencedRelation: "teleconsultations"
+            referencedRelation: "conversations"
             referencedColumns: ["id"]
           },
         ]
@@ -1796,21 +1856,14 @@ export type Database = {
           status?: string | null
           updated_at?: string | null
         }
-        Relationships: [
-          {
-            foreignKeyName: "fk_platform_responses_message"
-            columns: ["message_id"]
-            isOneToOne: false
-            referencedRelation: "messages"
-            referencedColumns: ["id"]
-          },
-        ]
+        Relationships: []
       }
       platforms: {
         Row: {
           api_key: string | null
           config: Json | null
           created_at: string | null
+          description: string | null
           id: string
           is_enabled: boolean | null
           name: string
@@ -1818,11 +1871,13 @@ export type Database = {
           type: string
           updated_at: string | null
           user_id: string | null
+          workspace_id: string | null
         }
         Insert: {
           api_key?: string | null
           config?: Json | null
           created_at?: string | null
+          description?: string | null
           id?: string
           is_enabled?: boolean | null
           name: string
@@ -1830,11 +1885,13 @@ export type Database = {
           type: string
           updated_at?: string | null
           user_id?: string | null
+          workspace_id?: string | null
         }
         Update: {
           api_key?: string | null
           config?: Json | null
           created_at?: string | null
+          description?: string | null
           id?: string
           is_enabled?: boolean | null
           name?: string
@@ -1842,6 +1899,7 @@ export type Database = {
           type?: string
           updated_at?: string | null
           user_id?: string | null
+          workspace_id?: string | null
         }
         Relationships: [
           {
@@ -1849,6 +1907,47 @@ export type Database = {
             columns: ["user_id"]
             isOneToOne: false
             referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      production_assets: {
+        Row: {
+          created_at: string | null
+          episode_id: number | null
+          id: number
+          name: string
+          status: string | null
+          type: string
+          url: string | null
+          version: string
+        }
+        Insert: {
+          created_at?: string | null
+          episode_id?: number | null
+          id?: number
+          name: string
+          status?: string | null
+          type: string
+          url?: string | null
+          version: string
+        }
+        Update: {
+          created_at?: string | null
+          episode_id?: number | null
+          id?: number
+          name?: string
+          status?: string | null
+          type?: string
+          url?: string | null
+          version?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "production_assets_episode_id_fkey"
+            columns: ["episode_id"]
+            isOneToOne: false
+            referencedRelation: "episodes"
             referencedColumns: ["id"]
           },
         ]
@@ -2112,13 +2211,6 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "response_metrics_message_id_fkey"
-            columns: ["message_id"]
-            isOneToOne: false
-            referencedRelation: "messages"
-            referencedColumns: ["id"]
-          },
-          {
             foreignKeyName: "response_metrics_platform_id_fkey"
             columns: ["platform_id"]
             isOneToOne: false
@@ -2271,123 +2363,6 @@ export type Database = {
           },
         ]
       }
-      staging_global_hubs: {
-        Row: {
-          address: string | null
-          contact_email: string | null
-          hub_name: string | null
-          key_contact_person: string | null
-          location: string | null
-          partnership_priority: string | null
-          phone: string | null
-          specialization_areas: string | null
-          strategic_value: string | null
-          website: string | null
-        }
-        Insert: {
-          address?: string | null
-          contact_email?: string | null
-          hub_name?: string | null
-          key_contact_person?: string | null
-          location?: string | null
-          partnership_priority?: string | null
-          phone?: string | null
-          specialization_areas?: string | null
-          strategic_value?: string | null
-          website?: string | null
-        }
-        Update: {
-          address?: string | null
-          contact_email?: string | null
-          hub_name?: string | null
-          key_contact_person?: string | null
-          location?: string | null
-          partnership_priority?: string | null
-          phone?: string | null
-          specialization_areas?: string | null
-          strategic_value?: string | null
-          website?: string | null
-        }
-        Relationships: []
-      }
-      staging_global_hubs_csv: {
-        Row: {
-          address: string | null
-          Address: string | null
-          "Contact Email": string | null
-          contact_email: string | null
-          csv_concat_headers: string | null
-          "Hub Name": string | null
-          hub_name: string | null
-          import_note: string | null
-          "Key Contact Person": string | null
-          key_contact_person: string | null
-          location: string | null
-          Location: string | null
-          "Partnership Priority": string | null
-          partnership_priority: string | null
-          phone: string | null
-          Phone: string | null
-          raw_payload: Json | null
-          "Specialization Areas": string | null
-          specialization_areas: string | null
-          "Strategic Value": string | null
-          strategic_value: string | null
-          website: string | null
-          Website: string | null
-        }
-        Insert: {
-          address?: string | null
-          Address?: string | null
-          "Contact Email"?: string | null
-          contact_email?: string | null
-          csv_concat_headers?: string | null
-          "Hub Name"?: string | null
-          hub_name?: string | null
-          import_note?: string | null
-          "Key Contact Person"?: string | null
-          key_contact_person?: string | null
-          location?: string | null
-          Location?: string | null
-          "Partnership Priority"?: string | null
-          partnership_priority?: string | null
-          phone?: string | null
-          Phone?: string | null
-          raw_payload?: Json | null
-          "Specialization Areas"?: string | null
-          specialization_areas?: string | null
-          "Strategic Value"?: string | null
-          strategic_value?: string | null
-          website?: string | null
-          Website?: string | null
-        }
-        Update: {
-          address?: string | null
-          Address?: string | null
-          "Contact Email"?: string | null
-          contact_email?: string | null
-          csv_concat_headers?: string | null
-          "Hub Name"?: string | null
-          hub_name?: string | null
-          import_note?: string | null
-          "Key Contact Person"?: string | null
-          key_contact_person?: string | null
-          location?: string | null
-          Location?: string | null
-          "Partnership Priority"?: string | null
-          partnership_priority?: string | null
-          phone?: string | null
-          Phone?: string | null
-          raw_payload?: Json | null
-          "Specialization Areas"?: string | null
-          specialization_areas?: string | null
-          "Strategic Value"?: string | null
-          strategic_value?: string | null
-          website?: string | null
-          Website?: string | null
-        }
-        Relationships: []
-      }
       submissions: {
         Row: {
           assignment_id: string
@@ -2477,13 +2452,6 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "task_executions_conversation_id_fkey"
-            columns: ["conversation_id"]
-            isOneToOne: false
-            referencedRelation: "conversations"
-            referencedColumns: ["id"]
-          },
-          {
             foreignKeyName: "task_executions_task_id_fkey"
             columns: ["task_id"]
             isOneToOne: false
@@ -2491,6 +2459,78 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      tasks: {
+        Row: {
+          assigned_to_id: number | null
+          created_at: string | null
+          description: string | null
+          episode_id: number | null
+          id: number
+          priority: string
+          status: string
+          title: string
+        }
+        Insert: {
+          assigned_to_id?: number | null
+          created_at?: string | null
+          description?: string | null
+          episode_id?: number | null
+          id?: number
+          priority?: string
+          status?: string
+          title: string
+        }
+        Update: {
+          assigned_to_id?: number | null
+          created_at?: string | null
+          description?: string | null
+          episode_id?: number | null
+          id?: number
+          priority?: string
+          status?: string
+          title?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tasks_assigned_to_id_fkey"
+            columns: ["assigned_to_id"]
+            isOneToOne: false
+            referencedRelation: "team_members"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tasks_episode_id_fkey"
+            columns: ["episode_id"]
+            isOneToOne: false
+            referencedRelation: "episodes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      team_members: {
+        Row: {
+          category: string
+          id: number
+          is_ai: boolean
+          name: string
+          role: string
+        }
+        Insert: {
+          category: string
+          id?: number
+          is_ai?: boolean
+          name: string
+          role: string
+        }
+        Update: {
+          category?: string
+          id?: number
+          is_ai?: boolean
+          name?: string
+          role?: string
+        }
+        Relationships: []
       }
       teleconsultations: {
         Row: {
@@ -2643,23 +2683,35 @@ export type Database = {
       }
       users: {
         Row: {
+          auth_user_id: string | null
           created_at: string | null
           email: string | null
+          full_name: string | null
           id: string
+          profile: Json | null
+          role: string | null
           updated_at: string | null
           username: string
         }
         Insert: {
+          auth_user_id?: string | null
           created_at?: string | null
           email?: string | null
+          full_name?: string | null
           id?: string
+          profile?: Json | null
+          role?: string | null
           updated_at?: string | null
           username: string
         }
         Update: {
+          auth_user_id?: string | null
           created_at?: string | null
           email?: string | null
+          full_name?: string | null
           id?: string
+          profile?: Json | null
+          role?: string | null
           updated_at?: string | null
           username?: string
         }
@@ -2751,6 +2803,7 @@ export type Database = {
       workspaces: {
         Row: {
           allow_cross_chaining: boolean | null
+          config: Json | null
           created_at: string | null
           description: string | null
           id: string
@@ -2759,9 +2812,11 @@ export type Database = {
           owner_id: string | null
           settings: Json | null
           updated_at: string | null
+          visibility: string | null
         }
         Insert: {
           allow_cross_chaining?: boolean | null
+          config?: Json | null
           created_at?: string | null
           description?: string | null
           id?: string
@@ -2770,9 +2825,11 @@ export type Database = {
           owner_id?: string | null
           settings?: Json | null
           updated_at?: string | null
+          visibility?: string | null
         }
         Update: {
           allow_cross_chaining?: boolean | null
+          config?: Json | null
           created_at?: string | null
           description?: string | null
           id?: string
@@ -2781,6 +2838,7 @@ export type Database = {
           owner_id?: string | null
           settings?: Json | null
           updated_at?: string | null
+          visibility?: string | null
         }
         Relationships: [
           {
@@ -2800,6 +2858,12 @@ export type Database = {
       calculate_course_progress: {
         Args: { p_course_id: string; p_user_id: string }
         Returns: number
+      }
+      dedupe_workspaces_keep_min_id: {
+        Args: never
+        Returns: {
+          deleted_count: number
+        }[]
       }
       get_all_tables: {
         Args: never
@@ -2824,6 +2888,10 @@ export type Database = {
         }[]
       }
       is_project_member: { Args: { p_project_id: string }; Returns: boolean }
+      workspace_platform_summary: {
+        Args: { p_workspace_id: string }
+        Returns: Json
+      }
     }
     Enums: {
       ai_model_status: "active" | "inactive" | "maintenance"
