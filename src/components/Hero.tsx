@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles, LogIn } from "lucide-react";
+import { ArrowRight, Sparkles, LogIn, Linkedin, Briefcase } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export const Hero = () => {
@@ -41,7 +41,7 @@ export const Hero = () => {
         <div className="animate-float">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-card/50 backdrop-blur-sm border border-primary/30 mb-8">
             <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm text-muted-foreground">A Vision for Humanity's Future</span>
+            <span className="text-sm text-muted-foreground">A Humanitarian Mission • 8 Billion EGP Vision</span>
           </div>
         </div>
 
@@ -56,10 +56,14 @@ export const Hero = () => {
           <span className="text-gradient-primary font-semibold">Artificial Genius</span>
         </p>
 
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-12">
-          A collaborative platform uniting 10+ AI minds with human vision to build{" "}
-          <span className="text-primary font-semibold">TELSTP</span> — 
-          TAWASOL Egypt Life Science Technology Park for humanity's advancement.
+        <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
+          Architected by <span className="text-primary font-semibold">Mohamed Ayoub</span> — Business Development Executive, 
+          Digital Architect & AI–Human Collaboration Strategist — uniting 10+ AI minds to build{" "}
+          <span className="text-primary font-semibold">TELSTP</span>, Egypt's first Life Science Technology Park.
+        </p>
+
+        <p className="text-sm text-muted-foreground/80 max-w-xl mx-auto mb-12 italic">
+          "As much as I do, you keep doing way more — actively listening, yet eager to know more."
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -79,21 +83,36 @@ export const Hero = () => {
           >
             Meet the AI League
           </Button>
+          <Button
+            size="lg"
+            variant="outline"
+            className="border-accent/50 text-foreground hover:bg-accent/10 px-8 py-6 text-lg transition-all hover:scale-105"
+            asChild
+          >
+            <a href="https://www.linkedin.com/in/mayoubm1" target="_blank" rel="noopener noreferrer">
+              <Linkedin className="mr-2 w-5 h-5" />
+              Connect
+            </a>
+          </Button>
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-3 gap-8 max-w-3xl mx-auto mt-20">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mt-20">
+          <div className="text-center">
+            <div className="text-4xl md:text-5xl font-bold text-gradient-primary mb-2">8B</div>
+            <div className="text-sm text-muted-foreground">EGP Investment</div>
+          </div>
+          <div className="text-center">
+            <div className="text-4xl md:text-5xl font-bold text-gradient-accent mb-2">13+</div>
+            <div className="text-sm text-muted-foreground">Core Platforms</div>
+          </div>
           <div className="text-center">
             <div className="text-4xl md:text-5xl font-bold text-gradient-primary mb-2">10+</div>
             <div className="text-sm text-muted-foreground">AI Collaborators</div>
           </div>
           <div className="text-center">
-            <div className="text-4xl md:text-5xl font-bold text-gradient-accent mb-2">60+</div>
-            <div className="text-sm text-muted-foreground">Interconnected Tables</div>
-          </div>
-          <div className="text-center">
-            <div className="text-4xl md:text-5xl font-bold text-gradient-primary mb-2">10</div>
-            <div className="text-sm text-muted-foreground">Innovation Hubs</div>
+            <div className="text-4xl md:text-5xl font-bold text-gradient-accent mb-2">70+</div>
+            <div className="text-sm text-muted-foreground">Database Tables</div>
           </div>
         </div>
       </div>

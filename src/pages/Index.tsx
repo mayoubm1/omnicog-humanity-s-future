@@ -9,6 +9,7 @@ import { HubsNetwork } from "@/components/HubsNetwork";
 import { Mission } from "@/components/Mission";
 import { VisionBook } from "@/components/VisionBook";
 import { Footer } from "@/components/Footer";
+import { NouraChat } from "@/components/NouraChat";
 
 const Index = () => {
   return (
@@ -26,6 +27,7 @@ const Index = () => {
       <MinistryRegistry />
       <Mission />
       <Footer />
+      <NouraChat />
     </div>
   );
 };
